@@ -9,4 +9,4 @@ launch:
           to: "/livox/lidar"
       -
           from: "/converted_pointcloud2"
-          to: "/livox/lidar/pcd2"
+          to: "/livox/lidar_pc2"
