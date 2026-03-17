@@ -17,15 +17,17 @@ void LivoxToPointCloud2::callback(
 
   output.resize(msg->point_num);
 
+  rclcpp::Time msg_time = msg->header.stamp;
+
   int i = 0;
   for (const auto& point : msg->points) {
     output[i].x = point.x;
     output[i].y = point.y;
     output[i].z = point.z;
-    output[i].reflectivity = point.reflectivity;
+    output[i].intensity = point.reflectivity;
     output[i].tag = point.tag;
     output[i].line = point.line;
-    output[i].offset_time = point.offset_time;
+    output[i].timestamp = point.offset_time + msg_time.nanoseconds();
     i++;
   }
 

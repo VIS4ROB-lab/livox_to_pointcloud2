@@ -24,22 +24,21 @@
 
 namespace livox_ros {
 struct EIGEN_ALIGN16 LivoxPointXYZRTLT {
-  float x;              /**< X axis, Unit:m */
-  float y;              /**< Y axis, Unit:m */
-  float z;              /**< Z axis, Unit:m */
-  uint8_t reflectivity; /**< Reflectivity   */
-  uint8_t tag;          /**< Livox point tag   */
-  uint8_t line;         /**< Laser line id     */
-  uint32_t offset_time; /**< Time offset, Unit:ns */
+  float x;
+  float y;
+  float z;
+  float intensity;
+  uint8_t tag;
+  uint8_t line;
+  double timestamp;
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 };
 }  // namespace livox_ros
 
 POINT_CLOUD_REGISTER_POINT_STRUCT(
     livox_ros::LivoxPointXYZRTLT,
-    (float, x, x)(float, y, y)(float, z, z)(uint8_t, reflectivity,
-                                            reflectivity)(uint8_t, tag, tag)(
-        uint8_t, line, line)(uint32_t, offset_time, offset_time))
+    (float, x, x)(float, y, y)(float, z, z)(float, intensity, intensity)(
+        uint8_t, tag, tag)(uint8_t, line, line)(double, timestamp, timestamp))
 
 class LivoxToPointCloud2 : public rclcpp::Node {
  public:
